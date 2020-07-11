@@ -1,0 +1,613 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>APP.API</name>
+    </assembly>
+    <members>
+        <member name="T:APP.API.Controllers.v1.AccountController">
+            <summary>
+            Account Management
+            </summary>
+            <remarks>
+            Author:
+            
+                Afolabi Gmatt Matthew
+                
+            Copyright:
+            
+                Copyright (c) Phareztech Code Lab. All rights reserved.
+            
+            </remarks>
+        </member>
+        <member name="M:APP.API.Controllers.v1.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{APP.Repository.EFRepo.EntitiesExt.IUser},Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,APP.Services.Email.IEmailService)">
+            <summary>
+            Account Management Constructor
+            </summary>
+            <param name="userManager"></param>
+            <param name="config"></param>
+            <param name="mapper"></param>
+            <param name="emailService"></param>
+        </member>
+        <member name="M:APP.API.Controllers.v1.AccountController.AuthenticateAsync(APP.Core.Model.LoginModel)">
+            <summary>
+            User login endpoint
+            </summary>
+            <param name="model"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.AccountController.RegisterAsync(APP.Core.Model.RegisterModel)">
+            <summary>
+            User registration endpoint
+            </summary>
+            <param name="model"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="T:APP.API.Controllers.v1.AuthController">
+            <summary>
+            Auth controller
+            </summary>
+        </member>
+        <member name="M:APP.API.Controllers.v1.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Auth Controller Constructor
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="T:APP.API.Controllers.v1.CountriesController">
+            <summary>
+            Country Management
+            </summary>
+            <remarks>
+            Author:
+            
+                Afolabi Gmatt Matthew
+                
+            Copyright:
+            
+                Copyright (c) Phareztech Code Lab. All rights reserved.
+            
+            </remarks>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.#ctor(AutoMapper.IMapper,APP.Repository.EFRepo.UnitOfWork.IUnitOfWork)">
+            <summary>
+            Country management constructor
+            </summary>
+            <param name="mapper"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.Get(System.String,System.String,System.Nullable{APP.Core.Enums.RecordStatus})">
+            <summary>
+            Search country
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/Countries
+            
+            </remarks>
+            <param name="name"></param>
+            <param name="code"></param>
+            <param name="status"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.GetByID(System.String)">
+            <summary>
+            Get country by country ID
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/Countries/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="ID"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.Post(APP.Core.Model.ModelMini.CountryMiniModel)">
+            <summary>
+            Create new country
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/Countries
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string"
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.Put(APP.Core.Model.CountryModel,System.String)">
+            <summary>
+            Update country
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/Countries/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string",
+                    "isRestricted": true,
+                    "id": "string",
+                    "recordStatus": 0,
+                    "isApproved": true
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <param name="ID"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.Patch(System.String)">
+            <summary>
+            Restrict or remove restriction placed on a country
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/Countries/b41229e2-370d-4aa2-a6fc-7ded5926d4d0/Restriction
+            
+            Payload:
+            
+                {}
+            
+            </remarks>
+            <param name="ID"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.CountriesController.Delete(System.String)">
+            <summary>
+            Delete a country
+            </summary>
+            <remarks>
+            URI:
+            
+                Delete /api/v1.0/Countries/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="ID"></param>
+            <returns code="204"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="T:APP.API.Controllers.v1.LGAsController">
+            <summary>
+            LGA Management
+            </summary>
+            <remarks>
+            Author:
+            
+                Afolabi Gmatt Matthew
+                
+            Copyright:
+            
+                Copyright (c) Phareztech Code Lab. All rights reserved.
+            
+            </remarks>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.#ctor(AutoMapper.IMapper,APP.Repository.EFRepo.UnitOfWork.IUnitOfWork)">
+            <summary>
+            LGA management constructor
+            </summary>
+            <param name="mapper"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.GetAsync(System.String,System.String,System.String,System.Nullable{APP.Core.Enums.RecordStatus})">
+            <summary>
+            Search LGA
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/LGAs
+            
+            </remarks>
+            <param name="name"></param>
+            <param name="code"></param>
+            <param name="countryId"></param>
+            <param name="status"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.GetByID(System.String)">
+            <summary>
+            Get LGA by LGA ID
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/LGAs/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="id"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.Post(APP.Core.Model.ModelMini.LGAMiniModel)">
+            <summary>
+            Create new LGA
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/LGAs
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string",
+                    "stateId": "string"
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.Put(APP.Core.Model.LGAModel,System.String)">
+            <summary>
+            Update LGA
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/LGAs/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string",
+                    "stateId": "string",
+                    "isRestricted": true,
+                    "id": "string",
+                    "recordStatus": 0,
+                    "isApproved": true
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <param name="id"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.Patch(System.String)">
+            <summary>
+            Restrict or remove restriction placed on a LGA
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/LGAs/b41229e2-370d-4aa2-a6fc-7ded5926d4d0/Restriction
+            
+            Payload:
+            
+                {}
+            
+            </remarks>
+            <param name="id"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.LGAsController.Delete(System.String)">
+            <summary>
+            Delete a LGA
+            </summary>
+            <remarks>
+            URI:
+            
+                Delete /api/v1.0/LGAs/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="id"></param>
+            <returns code="204"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="T:APP.API.Controllers.v1.ProfilesController">
+            <summary>
+            Profile Management
+            </summary>
+            <remarks>
+            Author:
+            
+                Afolabi Gmatt Matthew
+                
+            Copyright:
+            
+                Copyright (c) Phareztech Code Lab. All rights reserved.
+            
+            </remarks>
+        </member>
+        <member name="M:APP.API.Controllers.v1.ProfilesController.#ctor(AutoMapper.IMapper,APP.Repository.EFRepo.UnitOfWork.IUnitOfWork)">
+            <summary>
+            Profile management constructor
+            </summary>
+            <param name="mapper"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:APP.API.Controllers.v1.ProfilesController.Get(System.String,System.String,System.Nullable{APP.Core.Enums.RecordStatus})">
+            <summary>
+            Search country
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/Profiles
+            
+            </remarks>
+            <param name="name"></param>
+            <param name="code"></param>
+            <param name="status"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.ProfilesController.GetByID(System.String)">
+            <summary>
+            Get country by country ID
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/Profiles/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="ID"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.ProfilesController.Put(APP.Core.Model.ProfileModel,System.String)">
+            <summary>
+            Update country
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/Profiles/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string",
+                    "isRestricted": true,
+                    "id": "string",
+                    "recordStatus": 0,
+                    "isApproved": true
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <param name="ID"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.ProfilesController.Delete(System.String)">
+            <summary>
+            Delete a country
+            </summary>
+            <remarks>
+            URI:
+            
+                Delete /api/v1.0/Profiles/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="ID"></param>
+            <returns code="204"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="T:APP.API.Controllers.v1.StatesController">
+            <summary>
+            State Management
+            </summary>
+            <remarks>
+            Author:
+            
+                Afolabi Gmatt Matthew
+                
+            Copyright:
+            
+                Copyright (c) Phareztech Code Lab. All rights reserved.
+            
+            </remarks>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.#ctor(AutoMapper.IMapper,APP.Repository.EFRepo.UnitOfWork.IUnitOfWork)">
+            <summary>
+            State management constructor
+            </summary>
+            <param name="mapper"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.GetAsync(System.String,System.String,System.String,System.Nullable{APP.Core.Enums.RecordStatus})">
+            <summary>
+            Search state
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/States
+            
+            </remarks>
+            <param name="name"></param>
+            <param name="code"></param>
+            <param name="countryId"></param>
+            <param name="status"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.GetByID(System.String)">
+            <summary>
+            Get state by state ID
+            </summary>
+            <remarks>
+            URI:
+            
+                Get /api/v1.0/States/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="id"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.Post(APP.Core.Model.ModelMini.StateMiniModel)">
+            <summary>
+            Create new state
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/States
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string",
+                    "countryId": "string"
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.Put(APP.Core.Model.StateModel,System.String)">
+            <summary>
+            Update state
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/States/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            Payload:
+            
+                {
+                    "code": "string",
+                    "name": "string",
+                    "countryId": "string",
+                    "isRestricted": true,
+                    "id": "string",
+                    "recordStatus": 0,
+                    "isApproved": true
+                }
+            
+            </remarks>
+            <param name="model"></param>
+            <param name="id"></param>
+            <returns code="201"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.Patch(System.String)">
+            <summary>
+            Restrict or remove restriction placed on a state
+            </summary>
+            <remarks>
+            URI:
+            
+                Post /api/v1.0/States/b41229e2-370d-4aa2-a6fc-7ded5926d4d0/Restriction
+            
+            Payload:
+            
+                {}
+            
+            </remarks>
+            <param name="id"></param>
+            <returns code="200"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Controllers.v1.StatesController.Delete(System.String)">
+            <summary>
+            Delete a state
+            </summary>
+            <remarks>
+            URI:
+            
+                Delete /api/v1.0/States/b41229e2-370d-4aa2-a6fc-7ded5926d4d0
+            
+            </remarks>
+            <param name="id"></param>
+            <returns code="204"></returns>
+            <response code="400">Bad request</response>
+            <response code="401">User not authorized</response>
+            <response code="404">Entity not found</response>
+        </member>
+        <member name="M:APP.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:APP.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="M:APP.API.Utilities.TokenManager.GenerateToken(APP.Core.Model.ModelExt.UsersExtModel_Auth,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Generate token for logged in user
+            </summary>
+            <param name="user"></param>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:APP.API.Utilities.TokenManager.GetTokenInfo(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Deserialize token
+            </summary>
+            <param name="userClaims"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
